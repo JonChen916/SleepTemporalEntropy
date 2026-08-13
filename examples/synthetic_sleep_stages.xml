@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fully synthetic annotation. No participant data were used. -->
+<PSGAnnotation>
+  <EpochLength>30</EpochLength>
+  <ScoredEvents>
+    <ScoredEvent><EventConcept>Wake|0</EventConcept><Start>0</Start><Duration>60</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Stage 1 sleep|1</EventConcept><Start>60</Start><Duration>30</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Stage 2 sleep|2</EventConcept><Start>90</Start><Duration>90</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Stage 3 sleep|3</EventConcept><Start>180</Start><Duration>120</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Stage 2 sleep|2</EventConcept><Start>300</Start><Duration>60</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>REM sleep|5</EventConcept><Start>360</Start><Duration>60</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Arousal|Arousal ()</EventConcept><Start>400</Start><Duration>5</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Wake|0</EventConcept><Start>420</Start><Duration>30</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>Stage 1 sleep|1</EventConcept><Start>450</Start><Duration>30</Duration></ScoredEvent>
+    <ScoredEvent><EventConcept>REM sleep|5</EventConcept><Start>480</Start><Duration>90</Duration></ScoredEvent>
+  </ScoredEvents>
+</PSGAnnotation>

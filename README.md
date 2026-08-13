@@ -1,78 +1,120 @@
 # Sleep Temporal Entropy (STE)
 
-This repository provides Python code for computing **Sleep Temporal Entropy (STE)**, a novel metric that quantifies the fragmentation and irregularity of sleep architecture based on time-series sleep stage data.
+[![Tests](https://github.com/JonChen916/SleepTemporalEntropy/actions/workflows/tests.yml/badge.svg)](https://github.com/JonChen916/SleepTemporalEntropy/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
+Sleep Temporal Entropy (STE) is an entropy-based metric derived from a
+hypnogram. It quantifies how the total duration of a sleep stage is distributed
+among its continuous episodes (bouts). This repository contains the reference
+Python implementation accompanying the manuscript *Sleep Temporal Entropy as a
+Digital Biomarker of Sleep Fragmentation for Cardiometabolic and Mortality
+Risk*.
 
-## 🧠 What is STE?
+## Definition
 
-**Sleep Temporal Entropy (STE)** is designed to capture the **temporal irregularity** and **fragmentation** in sleep patterns using entropy-based analysis. Higher STE values indicate more disorganized and fragmented sleep, which may reflect underlying sleep disorders or neurodegenerative risk.
+For a sleep stage with episode durations \(d_1, \ldots, d_n\), define
 
-## 🧮 Calculation Process
+\[
+p_j = \frac{d_j}{\sum_{k=1}^{n} d_k}
+\]
 
-The Sleep Temporal Entropy (STE) is calculated based on the following steps:
+and
 
-1. **Sleep Stage Extraction**  
-   Sleep stage sequences are extracted from polysomnography (PSG) annotations (e.g., NSRR `.xml` files), typically sampled in 30-second epochs.
+\[
+\mathrm{STE} = -\sum_{j=1}^{n} p_j \log_2(p_j).
+\]
 
-2. **Preprocessing**  
-   Non-sleep epochs (e.g., undefined or artifact epochs) are filtered out. The sequence is encoded numerically (e.g., Wake=0, N1=1, N2=2, N3=3, REM=4).
+The implementation reports stage-specific STE for Wake, N1, N2, N3, and REM.
+NREM STE pools the N1, N2, and N3 episode durations. Overall STE pools all
+recognized stage episodes, including Wake. A stage represented by one episode
+has an entropy of 0; a stage with no episodes is reported as `null`/`None`.
+See [`docs/algorithm.md`](docs/algorithm.md) for the complete operational
+definition.
 
-3. **Sliding Window Segmentation**  
-   A moving window of fixed duration (e.g., 30 minutes) slides across the entire night with a predefined step (e.g., 1 epoch). Each window contains a sequence of sleep stages.
+## Installation
 
-4. **Entropy Calculation**  
-   Within each window, a histogram of sleep stage transitions is computed. Then, the Shannon entropy of the transition distribution is calculated.
-
-5. **Output**  
-   The result is a time-series of entropy values across the night, reflecting the temporal irregularity of sleep architecture.
-
----
-
-## 📦 Files
-
-- `SleepTemporalEntropy.py`: Core Python script for computing STE from sleep stage sequences.
-- `shhs1-200001.edf` and `shhs1-200001-nsrr.xml`: Example EDF and XML annotation files from the SHHS dataset.
-
----
-
-## 📥 Requirements
-
-- Python 3.6+
-- NumPy
-- (Optional) Pandas, if you're processing CSV files
-
-Install with:
+Python 3.9 or newer is required.
 
 ```bash
-pip install numpy pandas
+git clone https://github.com/JonChen916/SleepTemporalEntropy.git
+cd SleepTemporalEntropy
+python -m pip install .
 ```
 
----
+For development and testing:
 
-## ▶️ How to Use
+```bash
+python -m pip install ".[test]"
+pytest
+```
+
+## Quick start
+
+The repository contains only a fully synthetic XML annotation. It does not
+contain participant-level SHHS or SSHSC data.
+
+```bash
+sleep-temporal-entropy examples/synthetic_sleep_stages.xml
+```
+
+Python API:
 
 ```python
-from SleepTemporalEntropy import SleepTemporalEntropy
+from sleep_temporal_entropy import calculate_sleep_temporal_entropy
 
-edf_file_path = './shhs1-200001.edf'
-annotation_file_path = './shhs1-200001-nsrr.xml'
-
-time_entropies = calculate_SleepTemporalEntropy(edf_file_path, annotation_file_path)
-
-print(time_entropies)
+result = calculate_sleep_temporal_entropy(
+    "examples/synthetic_sleep_stages.xml"
+)
+print(result)
 ```
 
----
+The returned keys are:
 
-## 📄 Citation
+```text
+Wake_Time_Entropy
+N1_Time_Entropy
+N2_Time_Entropy
+N3_Time_Entropy
+REM_Time_Entropy
+Overall_Time_Entropy
+NREM_Time_Entropy
+```
 
-If you use this code in your research, please cite the following:
+NSRR XML stage labels currently recognized are `Wake`, `Stage 1 sleep`,
+`Stage 2 sleep`, `Stage 3 sleep`, `Stage 4 sleep` (combined with N3), and
+`REM sleep`. Text following the first `|` in an `EventConcept` is ignored.
 
-> Sleep Temporal Entropy (STE) — manuscript under review. Citation will be updated upon acceptance. For now, please contact the author (Jon Chen) for more information.
+## Data availability and privacy
 
----
+SHHS data are available through the National Sleep Research Resource (NSRR),
+subject to an approved data-access request and the applicable Data Access and
+Use Agreement: <https://sleepdata.org/datasets/shhs>. Restricted
+participant-level files must not be uploaded to this repository. See
+[`data/README.md`](data/README.md).
 
-## 🤝 Contact
+## Reproducibility
 
-Feel free to open an issue or contact [Jon Chen](mailto:[jonchen@hsc.pku.edu.cn](mailto:jonchen@hsc.pku.edu.cn)) for questions or collaborations.
+Run the complete public verification workflow with:
+
+```bash
+python -m pip install ".[test]"
+pytest
+sleep-temporal-entropy examples/synthetic_sleep_stages.xml
+```
+
+The synthetic example and hand-calculated unit tests verify XML parsing,
+episode merging, stage-specific entropy, NREM entropy, and overall entropy.
+Study-level statistical analyses require controlled-access cohort data and are
+not included in this metric-only repository.
+
+## Citation
+
+Citation metadata are provided in [`CITATION.cff`](CITATION.cff). GitHub will
+display them through **Cite this repository**. The version-specific Zenodo DOI
+will be added after the `v1.0.0` release is archived. The software DOI and the
+article DOI are different identifiers and should be cross-linked after article
+publication.
+
+## License
+
+Copyright © 2026 Jiong Chen. Released under the [MIT License](LICENSE).

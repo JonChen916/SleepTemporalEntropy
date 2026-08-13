@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+build/
+dist/
+.venv/
+.DS_Store
+
+# Restricted participant-level sleep data must never be committed.
+*.edf
+*-nsrr.xml
+data/raw/

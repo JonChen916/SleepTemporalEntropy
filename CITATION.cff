@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the archived software release and the associated article."
+title: "Sleep Temporal Entropy"
+type: software
+version: 1.0.0
+authors:
+  - family-names: "Chen"
+    given-names: "Jiong"
+    orcid: "https://orcid.org/0000-0001-7567-5369"
+repository-code: "https://github.com/JonChen916/SleepTemporalEntropy"
+url: "https://github.com/JonChen916/SleepTemporalEntropy"
+license: MIT
+keywords:
+  - sleep
+  - entropy
+  - hypnogram
+  - sleep fragmentation
+  - digital biomarker
