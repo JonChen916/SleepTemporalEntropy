@@ -3,12 +3,14 @@ message: "If you use this software, please cite the archived software release an
 title: "Sleep Temporal Entropy"
 type: software
 version: 1.0.0
+doi: "10.5281/zenodo.21926192"
+date-released: 2026-08-14
 authors:
   - family-names: "Chen"
     given-names: "Jiong"
     orcid: "https://orcid.org/0000-0001-7567-5369"
 repository-code: "https://github.com/JonChen916/SleepTemporalEntropy"
-url: "https://github.com/JonChen916/SleepTemporalEntropy"
+url: "https://doi.org/10.5281/zenodo.21926192"
 license: MIT
 keywords:
   - sleep

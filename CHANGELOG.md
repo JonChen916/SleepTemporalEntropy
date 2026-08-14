@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.0 - Unreleased
+## 1.0.0 - 2026-08-14
 
 - Document the manuscript-aligned STE definition.
 - Package the reference implementation as `sleep_temporal_entropy`.

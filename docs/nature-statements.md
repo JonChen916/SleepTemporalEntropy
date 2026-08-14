@@ -1,7 +1,5 @@
 # Manuscript availability statements
 
-Replace `XXXXXXXX` with the DOI assigned to the archived `v1.0.0` release.
-
 ## Data availability
 
 The Sleep Heart Health Study data analysed in this study are available through
@@ -17,5 +15,10 @@ code repository.
 
 The reference source code used to calculate Sleep Temporal Entropy is available
 at GitHub (https://github.com/JonChen916/SleepTemporalEntropy) and archived on
-Zenodo at https://doi.org/10.5281/zenodo.XXXXXXXX. The version corresponding to
+Zenodo at https://doi.org/10.5281/zenodo.21926192. The version corresponding to
 this article is version 1.0.0 and is released under the MIT License.
+
+## Software reference
+
+Chen, J. Sleep Temporal Entropy (version 1.0.0). Zenodo
+https://doi.org/10.5281/zenodo.21926192 (2026).

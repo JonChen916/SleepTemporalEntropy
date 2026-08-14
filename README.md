@@ -1,6 +1,7 @@
 # Sleep Temporal Entropy (STE)
 
 [![Tests](https://github.com/JonChen916/SleepTemporalEntropy/actions/workflows/tests.yml/badge.svg)](https://github.com/JonChen916/SleepTemporalEntropy/actions/workflows/tests.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21926192.svg)](https://doi.org/10.5281/zenodo.21926192)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Sleep Temporal Entropy (STE) is an entropy-based metric derived from a
@@ -110,10 +111,17 @@ not included in this metric-only repository.
 ## Citation
 
 Citation metadata are provided in [`CITATION.cff`](CITATION.cff). GitHub will
-display them through **Cite this repository**. The version-specific Zenodo DOI
-will be added after the `v1.0.0` release is archived. The software DOI and the
-article DOI are different identifiers and should be cross-linked after article
-publication.
+display them through **Cite this repository**. To reproduce or cite the
+software used for the associated manuscript, cite the archived `v1.0.0`
+release:
+
+> Chen, J. *Sleep Temporal Entropy* (Version 1.0.0) [Computer software].
+> Zenodo. <https://doi.org/10.5281/zenodo.21926192> (2026).
+
+The version-specific DOI above identifies the exact archived release. The
+[concept DOI](https://doi.org/10.5281/zenodo.21926191) resolves to the latest
+software version. The software DOI and the future journal-article DOI are
+different identifiers and should be cross-linked after article publication.
 
 ## License
 
